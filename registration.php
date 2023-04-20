@@ -1,5 +1,6 @@
 <?php
 require_once('dbconnect.php');
+require_once('main.php');
 if(isset($_POST['submit'])){
     $err = [];
 
@@ -22,7 +23,7 @@ if(isset($_POST['submit'])){
         $role = $_POST['role'];
 
         mysqli_query($db, "INSERT INTO users SET login = '$login', password = '$password', role = '$role'");
-        header("Location: /lab7/authorization.php"); exit();
+        header("Location: /lab7/Adress-book/authorization.php"); exit();
     } else {
         echo "При регистрации произошли следующие ошибки:";
         foreach($err as $error){
@@ -32,10 +33,16 @@ if(isset($_POST['submit'])){
 }
 ?> 
 <form method="POST">
-    Логин <input name="login" type="text" required><br>
-    Пароль <input name="password" type="password" required><br>
-    Роль <select name="role" required>
+    <div class="mb-3">
+    <input name="login" type="text" required placeholder="Логин" class="form-control-sm"><br>
+    </div>
+    <div class="mb-3">
+    <input name="password" type="password" required placeholder="Пароль" class="form-control-sm"><br>
+    </div>
+    <div class="mb-3">
+    <select name="role" required aria-placeholder="Роль" class="form-control-sm">
         <option value="Operator">Operator</option>
     </select>
-    <input name="submit" type="submit" value="Зарегистрироваться">
+    </div>
+    <input name="submit" type="submit" value="Зарегистрировать оператора" class="btn btn-success">
 </form>
